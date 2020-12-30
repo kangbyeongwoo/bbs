@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cci.board.dao.BoardDao">
+	<select id="getBoardList" resultType="com.cci.board.vo.BoardVO">
+		select * from board
+	</select>
+	<insert id="boardWrite" parameterType="com.cci.board.vo.BoardVO">
+		insert into board(btitle,bcontent,bwriter,bdate)
+		values(#{btitle},#{bcontent},#{bwriter},now())
+	</insert>
+	<select id="getBoardDetail" resultType="com.cci.board.vo.BoardVO">
+		select * from board where bnum=#{bnum}
+	</select>
+	<update id="boardUpdate" parameterType="com.cci.board.vo.BoardVO">
+        UPDATE BOARD 
+        SET btitle = #{btitle}, bcontent = #{bcontent}
+        WHERE bnum = #{bnum}
+    </update>
+	<update id="boardDelete" parameterType="int">
+		delete from board where bnum=#{bnum} 
+	</update>
+</mapper>
